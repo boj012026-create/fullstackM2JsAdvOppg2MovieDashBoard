@@ -10,21 +10,36 @@ console.log(`
 	movieTable ${movieTable}
 `);
 
-function buildMovieTable() {
-  const tableTitles = buildTableHeaders("Tittel", "Sjanger", "minutt", "vurdering", "sett")
+function buildMovieTable(movieArr) {
+  const tableTitles = buildTableHeaders("Tittel", "Sjanger", "Minutt", "Vurdering", "Sett")
   movieTable.append(tableTitles);
-  movies.forEach(m => {
+  movieArr.forEach(m => {
     const row = document.createElement('tr');
     const { title, genre, length, rating, timesWatched} = m;
     console.log(title, genre, length, rating, timesWatched);
     row.append(createCell(title)); 
-     
+    row.append(createCell(genre)); 
+    row.append(createCell(length)); 
+    row.append(createCell(rating)); 
+    row.append(createCell(timesWatched)); 
+    movieTable.append(row);
   });
+  return movieTable;
 }
 
 function createCell(text) {
   const cell = document.createElement('td');
-  cell.textContent = text;
+  const txtInput = document.createElement('input');
+
+  txtInput.type = "text";
+  txtInput.value = text;
+  txtInput.classList.add('cell-input');
+  txtInput.addEventListener('focusout', (e) => {
+    console.log(e.target);
+    e.target 
+  });
+  
+  cell.append(txtInput);
   return cell;
 }
 
@@ -45,7 +60,7 @@ function buildFacts() {
 function renderPage() {
   clearPage()
   buildFacts();
-  buildMovieTable();
+  buildMovieTable(movies);
 }
 
 renderPage();
@@ -63,7 +78,7 @@ function getDefaultMovies() {
   id, title, genre, length in minutes, owned, rating, timesWatched
    * */
 
-const movies = [
+  const movies = [
   { id: 1, title: "Inception", genre: "Sci-Fi", length: 148, rating: 8.8, timesWatched: 5 },
   { id: 2, title: "The Dark Knight", genre: "Action", length: 152, rating: 9.0, timesWatched: 8 },
   { id: 3, title: "Interstellar", genre: "Sci-Fi", length: 169, rating: 8.6, timesWatched: 6 },
@@ -87,7 +102,7 @@ const movies = [
   { id: 21, title: "The Dark Knight", genre: "Action", length: 152, rating: 9.0, timesWatched: 8 },
   { id: 22, title: "Parasite", genre: "Thriller", length: 132, rating: 8.5, timesWatched: 3 },
   { id: 23, title: "The Shawshank Redemption", genre: "Drama", length: 142, rating: 9.3, timesWatched: 9 }
-];
+  ];
 
-return movies;
+  return movies;
 }
