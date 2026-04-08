@@ -1,18 +1,41 @@
 const movieForm = document.getElementById("movie-form"); 
 const factContainer = document.getElementById("fact-container"); 
-const movieContainer = document.getElementById("movie-container"); 
+const movieTable = document.getElementById("movie-table"); 
 
 const movies = getDefaultMovies();
 
 console.log(`
 	movieForm ${movieForm}
 	factContainer ${factContainer}
-	movieContainer ${movieContainer}
+	movieTable ${movieTable}
 `);
 
-buildFacts();
-function buildMovies() {
+function buildMovieTable() {
+  const tableTitles = buildTableHeaders("Tittel", "Sjanger", "minutt", "vurdering", "sett")
+  movieTable.append(tableTitles);
+  movies.forEach(m => {
+    const row = document.createElement('tr');
+    const { title, genre, length, rating, timesWatched} = m;
+    console.log(title, genre, length, rating, timesWatched);
+    row.append(createCell(title)); 
+     
+  });
+}
 
+function createCell(text) {
+  const cell = document.createElement('td');
+  cell.textContent = text;
+  return cell;
+}
+
+function buildTableHeaders(...headers) {
+  const hdrRow = document.createElement('tr');
+  hdrElm = headers.forEach(h => {
+    const hdr = document.createElement('th');
+    hdr.textContent = h;
+    hdrRow.append(hdr);
+  });
+  return hdrRow;
 }
 
 function buildFacts() {
@@ -20,8 +43,16 @@ function buildFacts() {
 }
 
 function renderPage() {
+  clearPage()
   buildFacts();
-  buildMovies();
+  buildMovieTable();
+}
+
+renderPage();
+
+function clearPage() {
+  movieTable.replaceChildren();
+  factContainer.replaceChildren();
 }
 
 function getDefaultMovies() {
