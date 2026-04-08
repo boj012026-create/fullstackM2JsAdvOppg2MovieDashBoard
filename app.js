@@ -1,42 +1,62 @@
-const moveForm = document.getElementById("movie-form"); 
+const movieForm = document.getElementById("movie-form"); 
 const factContainer = document.getElementById("fact-container"); 
 const movieContainer = document.getElementById("movie-container"); 
 
+const movies = getDefaultMovies();
+
 console.log(`
+	movieForm ${movieForm}
 	factContainer ${factContainer}
 	movieContainer ${movieContainer}
 `);
 
-/*generated with google AI*/
-/* prompt:
-create me a list of 23 popular movies as an js object array,
-that includes the attributes:
-id, title, length, owned, rating, timesWatched
- * */
-const movie = [
-  { id: 1, title: "The Shawshank Redemption", length: 142, owned: true, rating: 9.3, timesWatched: 5 },
-  { id: 2, title: "The Godfather", length: 175, owned: true, rating: 9.2, timesWatched: 3 },
-  { id: 3, title: "The Dark Knight", length: 152, owned: false, rating: 9.0, timesWatched: 2 },
-  { id: 4, title: "Pulp Fiction", length: 154, owned: true, rating: 8.9, timesWatched: 4 },
-  { id: 5, title: "Inception", length: 148, owned: true, rating: 8.8, timesWatched: 6 },
-  { id: 6, title: "The Matrix", length: 136, owned: true, rating: 8.7, timesWatched: 10 },
-  { id: 7, title: "Goodfellas", length: 146, owned: false, rating: 8.7, timesWatched: 1 },
-  { id: 8, title: "Star Wars: Episode V - The Empire Strikes Back", length: 124, owned: true, rating: 8.7, timesWatched: 8 },
-  { id: 9, title: "Interstellar", length: 169, owned: true, rating: 8.6, timesWatched: 3 },
-  { id: 10, title: "Parasite", length: 132, owned: false, rating: 8.5, timesWatched: 2 },
-  { id: 11, title: "Avengers: Endgame", length: 181, owned: true, rating: 8.4, timesWatched: 4 },
-  { id: 12, title: "The Lion King", length: 88, owned: true, rating: 8.5, timesWatched: 12 },
-  { id: 13, title: "Gladiator", length: 155, owned: false, rating: 8.5, timesWatched: 3 },
-  { id: 14, title: "Spirited Away", length: 125, owned: false, rating: 8.6, timesWatched: 2 },
-  { id: 15, title: "The Silence of the Lambs", length: 118, owned: true, rating: 8.6, timesWatched: 1 },
-  { id: 16, title: "Saving Private Ryan", length: 169, owned: true, rating: 8.6, timesWatched: 2 },
-  { id: 17, title: "The Lord of the Rings: The Fellowship of the Ring", length: 178, owned: true, rating: 8.8, timesWatched: 5 },
-  { id: 18, title: "The Departed", length: 151, owned: false, rating: 8.5, timesWatched: 1 },
-  { id: 19, title: "Whiplash", length: 107, owned: true, rating: 8.5, timesWatched: 3 },
-  { id: 20, title: "The Prestige", length: 130, owned: false, rating: 8.5, timesWatched: 2 },
-  { id: 21, title: "Coco", length: 105, owned: true, rating: 8.4, timesWatched: 4 },
-  { id: 22, title: "Toy Story", length: 81, owned: true, rating: 8.3, timesWatched: 7 },
-  { id: 23, title: "Back to the Future", length: 116, owned: true, rating: 8.5, timesWatched: 6 }
+buildFacts();
+function buildMovies() {
+
+}
+
+function buildFacts() {
+
+}
+
+function renderPage() {
+  buildFacts();
+  buildMovies();
+}
+
+function getDefaultMovies() {
+  /*generated with google AI*/
+  /* prompt:
+  create me a list of 23 popular movies as an js object array,
+  that includes the attributes:
+  id, title, genre, length in minutes, owned, rating, timesWatched
+   * */
+
+const movies = [
+  { id: 1, title: "Inception", genre: "Sci-Fi", length: 148, rating: 8.8, timesWatched: 5 },
+  { id: 2, title: "The Dark Knight", genre: "Action", length: 152, rating: 9.0, timesWatched: 8 },
+  { id: 3, title: "Interstellar", genre: "Sci-Fi", length: 169, rating: 8.6, timesWatched: 6 },
+  { id: 4, title: "Parasite", genre: "Thriller", length: 132, rating: 8.5, timesWatched: 3 },
+  { id: 5, title: "Spirited Away", genre: "Animation", length: 125, rating: 8.6, timesWatched: 4 },
+  { id: 6, title: "Avengers: Endgame", genre: "Action", length: 181, rating: 8.4, timesWatched: 7 },
+  { id: 7, title: "The Matrix", genre: "Sci-Fi", length: 136, rating: 8.7, timesWatched: 10 },
+  { id: 8, title: "Titanic", genre: "Romance", length: 194, rating: 7.9, timesWatched: 5 },
+  { id: 9, title: "The Godfather", genre: "Crime", length: 175, rating: 9.2, timesWatched: 4 },
+  { id: 10, title: "Pulp Fiction", genre: "Crime", length: 154, rating: 8.9, timesWatched: 6 },
+  { id: 11, title: "The Shawshank Redemption", genre: "Drama", length: 142, rating: 9.3, timesWatched: 9 },
+  { id: 12, title: "Avatar", genre: "Sci-Fi", length: 162, rating: 7.8, timesWatched: 3 },
+  { id: 13, title: "The Lord of the Rings: The Fellowship of the Ring", genre: "Fantasy", length: 178, rating: 8.8, timesWatched: 7 },
+  { id: 14, title: "Star Wars: A New Hope", genre: "Sci-Fi", length: 121, rating: 8.6, timesWatched: 12 },
+  { id: 15, title: "Joker", genre: "Drama", length: 122, rating: 8.4, timesWatched: 3 },
+  { id: 16, title: "Forrest Gump", genre: "Drama", length: 142, rating: 8.8, timesWatched: 8 },
+  { id: 17, title: "The Lion King", genre: "Animation", length: 88, rating: 8.5, timesWatched: 15 },
+  { id: 18, title: "Gladiator", genre: "Action", length: 155, rating: 8.5, timesWatched: 5 },
+  { id: 19, title: "Dune", genre: "Sci-Fi", length: 155, rating: 8.0, timesWatched: 2 },
+  { id: 20, title: "Inception", genre: "Sci-Fi", length: 148, rating: 8.8, timesWatched: 5 },
+  { id: 21, title: "The Dark Knight", genre: "Action", length: 152, rating: 9.0, timesWatched: 8 },
+  { id: 22, title: "Parasite", genre: "Thriller", length: 132, rating: 8.5, timesWatched: 3 },
+  { id: 23, title: "The Shawshank Redemption", genre: "Drama", length: 142, rating: 9.3, timesWatched: 9 }
 ];
 
-console.log(movie);
+return movies;
+}

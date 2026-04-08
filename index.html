@@ -8,8 +8,34 @@
 </head>
 <body>
 	<header>
+		<h1>Film Samling</h1>
 		<form id="movie-form">
-			
+			<label for="movie-title">Tittel</label>
+			<input id="movie-title" name="movie-title" type="text">
+
+			<label for="movie-genre">Sjanger</label>
+			<select id="movie-genre" name="movie-genre">
+				<option value="Action">Action</option>
+				<option value="Comedy">Comedy</option>
+				<option value="Crime">Crime</option>
+				<option value="Drama">Drama</option>
+				<option value="Horror">Horror</option>
+				<option value="Romance">Romance</option>
+				<option value="Sci-fi">Sci-fi</option>
+				<option value="Thriller">Thriller</option>
+				<option value="Western">Western</option>
+			</select>
+
+			<label for="movie-length">Lengde(minutt)</label>
+			<input id="movie-length" name="movie-length" type="number">
+
+			<label for="movie-rating">Vurdering (1-10)</label>
+			<input id="movie-rating" name="movie-rating" type="number">
+
+			<label for="movie-watched">Antall ganger sett</label>
+			<input id="movie-watched" name="movie-watched" type="number">
+			<button id="search-btn">Søk</button>
+			<button id="add-btn">Legg til</button>
 		</form>
 	</header>
 	<main id="main-container">
