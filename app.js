@@ -1,6 +1,7 @@
 const movieForm = document.getElementById("movie-form"); 
 const factContainer = document.getElementById("fact-container"); 
 const movieTable = document.getElementById("movie-table"); 
+const addMovieBtn = document.getElementById("add-btn");
 
 const movies = getDefaultMovies();
 
@@ -10,27 +11,47 @@ console.log(`
 	movieTable ${movieTable}
 `);
 
+addMovieBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  const formData = new FormData(movieForm);
+  const newMovie = {
+    id: movies.length + 1,
+    title: formData.get("movie-title"),
+    genre: formData.get("movie-genre"), 
+    length: formData.get("movie-length"),
+    rating: formData.get("movie-rating"),
+    timesWatched: formData.get("movie-watched")
+  }
+  console.log(newMovie);
+  movies.push(newMovie);
+  renderPage();
+});
+
 function buildMovieTable(movieArr) {
   const tableTitles = buildTableHeaders("Tittel", "Sjanger", "Minutt", "Vurdering", "Sett")
   movieTable.append(tableTitles);
   movieArr.forEach(m => {
-    const row = document.createElement('tr');
-    const { title, genre, length, rating, timesWatched} = m;
-    console.log(title, genre, length, rating, timesWatched);
-
-    row.id = m.id;
-
-    row.append(createCell(title)); 
-    row.append(createCell(genre)); 
-    row.append(createCell(length)); 
-    row.append(createCell(rating)); 
-    row.append(createCell(timesWatched)); 
-    
-    row.readOnly = true;
-    row.append(createEditBtn(row));
-    movieTable.append(row);
+    movieTable.append(createRow(m));
   });
   return movieTable;
+}
+
+function createRow(movieObj) {
+  const row = document.createElement('tr');
+  const { title, genre, length, rating, timesWatched} = movieObj;
+  //console.log(title, genre, length, rating, timesWatched);
+
+  row.id = movieObj.id;
+
+  row.append(createCell(title)); 
+  row.append(createCell(genre)); 
+  row.append(createCell(length)); 
+  row.append(createCell(rating)); 
+  row.append(createCell(timesWatched)); 
+  
+  row.readOnly = true;
+  row.append(createEditBtn(row));
+  return row; 
 }
 
 function createEditBtn(parentRow) {
@@ -50,7 +71,6 @@ function createEditBtn(parentRow) {
     }
 
     editBtn.textContent = parentRow.readOnly ? "Endre": "Lagre";
-    console.log("edit btn pressed");
   });
 
   return editBtn;
