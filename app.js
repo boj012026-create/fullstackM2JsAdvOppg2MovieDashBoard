@@ -22,9 +22,21 @@ function buildMovieTable(movieArr) {
     row.append(createCell(length)); 
     row.append(createCell(rating)); 
     row.append(createCell(timesWatched)); 
+    row.append(createEditBtn(row));
     movieTable.append(row);
   });
   return movieTable;
+}
+
+function createEditBtn(parentRow) {
+  const editBtn = document.createElement('button');
+  editBtn.textContent = "Endre";
+  
+  editBtn.addEventListener('click', () => {
+    console.log("edit btn pressed");
+  });
+
+  return editBtn;
 }
 
 function createCell(text) {
@@ -33,11 +45,8 @@ function createCell(text) {
 
   txtInput.type = "text";
   txtInput.value = text;
+  txtInput.readOnly = true;
   txtInput.classList.add('cell-input');
-  txtInput.addEventListener('focusout', (e) => {
-    console.log(e.target);
-    e.target 
-  });
   
   cell.append(txtInput);
   return cell;
