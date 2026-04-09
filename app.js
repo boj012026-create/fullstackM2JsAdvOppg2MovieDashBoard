@@ -212,7 +212,7 @@ function getDefaultMovies() {
   id, title, genre, length in minutes, owned, rating, timesWatched
    * */
 
-  const movies = [
+  const popularMovies = [
   { id: 1, title: "Inception", genre: "Sci-Fi", length: 148, rating: 8.8, timesWatched: 5 },
   { id: 2, title: "The Dark Knight", genre: "Action", length: 152, rating: 9.0, timesWatched: 8 },
   { id: 3, title: "Interstellar", genre: "Sci-Fi", length: 169, rating: 8.6, timesWatched: 6 },
@@ -232,11 +232,7 @@ function getDefaultMovies() {
   { id: 17, title: "The Lion King", genre: "Animation", length: 88, rating: 8.5, timesWatched: 15 },
   { id: 18, title: "Gladiator", genre: "Action", length: 155, rating: 8.5, timesWatched: 5 },
   { id: 19, title: "Dune", genre: "Sci-Fi", length: 155, rating: 8.0, timesWatched: 2 },
-  { id: 20, title: "Inception", genre: "Sci-Fi", length: 148, rating: 8.8, timesWatched: 5 },
-  { id: 21, title: "The Dark Knight", genre: "Action", length: 152, rating: 9.0, timesWatched: 8 },
-  { id: 22, title: "Parasite", genre: "Thriller", length: 132, rating: 8.5, timesWatched: 3 },
-  { id: 23, title: "The Shawshank Redemption", genre: "Drama", length: 142, rating: 9.3, timesWatched: 9 }
   ];
 
-  return movies;
+  return popularMovies;
 }
