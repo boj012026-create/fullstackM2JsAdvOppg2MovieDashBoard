@@ -2,14 +2,42 @@ const movieForm = document.getElementById("movie-form");
 const factContainer = document.getElementById("fact-container"); 
 const movieTable = document.getElementById("movie-table"); 
 const addMovieBtn = document.getElementById("add-btn");
+const deleteAllbtn = document.getElementById("delete-all-btn");
+const searchBtn = document.getElementById("search-btn");
 
-const movies = getDefaultMovies();
+let movies = [];
+const movieFilter = {
+  title: "",
+  genre: "All", 
+  length: 0,
+  rating: 0,
+  timesWatched: 0
+}
 
 console.log(`
 	movieForm ${movieForm}
 	factContainer ${factContainer}
 	movieTable ${movieTable}
+	addMovieBtn ${addMovieBtn}
+	deleteAllbtn ${deleteAllbtn}
 `);
+
+searchBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  const formData = new FormData(movieForm);
+  movieFilter.title = formData.get("movie-title");
+  movieFilter.genre = formData.get("movie-genre"); 
+  movieFilter.length = formData.get("movie-length");
+  movieFilter.rating = formData.get("movie-rating");
+  movieFilter.timesWatched = formData.get("movie-watched");
+  renderPage();
+});
+
+deleteAllbtn.addEventListener('click', () => {
+  movies = [];
+  saveLocal();
+  renderPage();
+});
 
 addMovieBtn.addEventListener('click', (e) => {
   e.preventDefault();
@@ -142,11 +170,35 @@ function buildFacts() {
 function renderPage() {
   clearPage()
   buildFacts();
-  buildMovieTable(movies);
+  buildMovieTable(searcFilter(movies));
 }
 
+loadData();
 renderPage();
 
+function searcFilter(movieArr) {
+  console.log(movieFilter);
+  //return movieArr;
+  return movieArr.filter(m => { 
+    console.log(m);
+    const title = m.title.toLowerCase().includes(movieFilter.title.toLowerCase());
+    const genre = movieFilter.genre === "All" || m.genre === movieFilter.genre;
+    const length = movieFilter.length <= m.length;
+    const rating = movieFilter.rating <= m.rating;
+    const watched = movieFilter.timesWatched <= m.timesWatched;
+    return title && genre && length && rating && watched;
+  })
+}
+
+function loadData() {
+  const storedMovies = JSON.parse(localStorage.getItem("movies"));
+  if (storedMovies) {
+    movies = storedMovies;
+  }
+  if (movies.length <= 0) {
+    movies = getDefaultMovies();
+  }
+}
 function clearPage() {
   movieTable.replaceChildren();
   factContainer.replaceChildren();
