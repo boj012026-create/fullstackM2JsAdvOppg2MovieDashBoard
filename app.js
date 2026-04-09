@@ -17,6 +17,9 @@ function buildMovieTable(movieArr) {
     const row = document.createElement('tr');
     const { title, genre, length, rating, timesWatched} = m;
     console.log(title, genre, length, rating, timesWatched);
+
+    row.id = m.id;
+
     row.append(createCell(title)); 
     row.append(createCell(genre)); 
     row.append(createCell(length)); 
@@ -36,21 +39,32 @@ function createEditBtn(parentRow) {
   
   editBtn.addEventListener('click', () => {
     const cellRow = parentRow.querySelectorAll('input');
-
     parentRow.readOnly = !parentRow.readOnly;
     
     cellRow.forEach(cell => {
       cell.readOnly = parentRow.readOnly;
     });
 
-    editBtn.textContent = parentRow.readOnly ? "Endre" : "Lagre";
+    if (parentRow.readOnly) {
+      saveRow(parentRow)
+    }
 
-    //lagre
-
+    editBtn.textContent = parentRow.readOnly ? "Endre": "Lagre";
     console.log("edit btn pressed");
   });
 
   return editBtn;
+}
+
+function saveRow(row) {
+  const movieObj = movies.filter(m => m.id == row.id)[0];
+  const movieKeys = Object.keys(movieObj);
+  //const movieIndex = movies.indexOf(movieObj);
+  const cells = row.querySelectorAll('input');
+  
+  for (let i = 0; i < cells.length; i++) {
+    movieObj[movieKeys[i + 1]] = cells[i].value;
+  }
 }
 
 function createCell(text) {
