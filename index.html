@@ -22,7 +22,7 @@
 				<option value="Drama">Drama</option>
 				<option value="Horror">Horror</option>
 				<option value="Romance">Romance</option>
-				<option value="Sci-fi">Sci-fi</option>
+				<option value="Sci-Fi">Sci-Fi</option>
 				<option value="Thriller">Thriller</option>
 				<option value="Western">Western</option>
 			</select>
@@ -38,6 +38,17 @@
 			<button id="search-btn">Søk</button>
 			<button id="add-btn">Legg til</button>
 			<button id="delete-all-btn">Slett Alt</button>
+			<label for="sort-key">Sortering</label>
+			<select id="sort-key" name="sort-key">
+				<option value="title">Tittel</option>
+				<option value="genre">Sjanger</option>
+				<option value="length">Lengde</option>
+				<option value="rating">Vurdering</option>
+				<option value="timesWatched">Sett</option>
+			</select>
+				<label for="sort-reverse">Baklengs</label>
+				<input type="checkbox" id="sort-reverse" name="sort-reverse">
+
 		</form>
 	</header>
 	<main id="main-container">

@@ -4,14 +4,22 @@ const movieTable = document.getElementById("movie-table");
 const addMovieBtn = document.getElementById("add-btn");
 const deleteAllbtn = document.getElementById("delete-all-btn");
 const searchBtn = document.getElementById("search-btn");
+const sortKey = document.getElementById("sort-key");
+const sortReverse = document.getElementById("sort-reverse");
 
 let movies = [];
 const movieFilter = {
+  id: 1,
   title: "",
   genre: "All", 
   length: 0,
   rating: 0,
   timesWatched: 0
+}
+
+const sort = {
+  key: "title",
+  reverse: false
 }
 
 console.log(`
@@ -21,6 +29,16 @@ console.log(`
 	addMovieBtn ${addMovieBtn}
 	deleteAllbtn ${deleteAllbtn}
 `);
+
+sortReverse.addEventListener('change', (e) => {
+  sort.reverse = e.target.checked;
+  renderPage();
+});
+
+sortKey.addEventListener('change', (e) => {
+  sort.key = e.target.value;
+  renderPage();
+});
 
 searchBtn.addEventListener('click', (e) => {
   e.preventDefault();
@@ -34,7 +52,7 @@ searchBtn.addEventListener('click', (e) => {
 });
 
 deleteAllbtn.addEventListener('click', () => {
-  movies = [];
+  movies = [movieFilter];
   saveLocal();
   renderPage();
 });
@@ -170,12 +188,29 @@ function buildFacts() {
 function renderPage() {
   clearPage()
   buildFacts();
-  buildMovieTable(searcFilter(movies));
+  buildMovieTable(movieSort(searcFilter(movies)));
 }
 
 loadData();
 renderPage();
 
+function movieSort(movieArr) {
+  return movieArr.sort((a,b) => {
+    if (sort.reverse) {
+      return compare(b[sort.key], a[sort.key]);
+  } else {
+      return compare(a[sort.key], b[sort.key]);
+  }
+});
+}
+
+function compare(a, b) {
+  if( typeof a === 'string' && typeof b === 'string') {
+    return a.localeCompare(b);
+  } else {
+    return b - a;
+  }
+}
 function searcFilter(movieArr) {
   console.log(movieFilter);
   //return movieArr;
