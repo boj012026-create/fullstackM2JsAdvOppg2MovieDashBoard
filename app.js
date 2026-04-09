@@ -23,7 +23,7 @@ addMovieBtn.addEventListener('click', (e) => {
     timesWatched: formData.get("movie-watched")
   }
   console.log(newMovie);
-  movies.push(newMovie);
+  movies.unshift(newMovie);
   renderPage();
 });
 
@@ -51,7 +51,23 @@ function createRow(movieObj) {
   
   row.readOnly = true;
   row.append(createEditBtn(row));
+  row.append(createDeleteBtn(row));
   return row; 
+}
+
+function createDeleteBtn(parentRow) {
+  const delBtn = document.createElement('button');
+  delBtn.textContent = "Slett";
+
+  delBtn.addEventListener('click', () => {
+    const movieObj = movies.filter(m => m.id == parentRow.id)[0];
+    const movieIndex = movies.indexOf(movieObj);
+    movies.splice(movieIndex, 1);
+    console.log(`movieIndex: ${movieIndex}`);
+    saveLocal();
+    renderPage();    
+  });
+  return delBtn;
 }
 
 function createEditBtn(parentRow) {
@@ -67,7 +83,11 @@ function createEditBtn(parentRow) {
     });
 
     if (parentRow.readOnly) {
-      saveRow(parentRow)
+      saveRow(parentRow);
+      saveLocal();
+      parentRow.classList.remove('edit');
+    } else {
+      parentRow.classList.add('edit'); 
     }
 
     editBtn.textContent = parentRow.readOnly ? "Endre": "Lagre";
