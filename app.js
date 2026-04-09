@@ -65,6 +65,11 @@ function saveRow(row) {
   for (let i = 0; i < cells.length; i++) {
     movieObj[movieKeys[i + 1]] = cells[i].value;
   }
+  saveLocal();
+}
+
+function saveLocal() {
+  localStorage.setItem("movies", JSON.stringify(movies));
 }
 
 function createCell(text) {
