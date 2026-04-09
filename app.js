@@ -22,6 +22,8 @@ function buildMovieTable(movieArr) {
     row.append(createCell(length)); 
     row.append(createCell(rating)); 
     row.append(createCell(timesWatched)); 
+    
+    row.readOnly = true;
     row.append(createEditBtn(row));
     movieTable.append(row);
   });
@@ -33,6 +35,18 @@ function createEditBtn(parentRow) {
   editBtn.textContent = "Endre";
   
   editBtn.addEventListener('click', () => {
+    const cellRow = parentRow.querySelectorAll('input');
+
+    parentRow.readOnly = !parentRow.readOnly;
+    
+    cellRow.forEach(cell => {
+      cell.readOnly = parentRow.readOnly;
+    });
+
+    editBtn.textContent = parentRow.readOnly ? "Endre" : "Lagre";
+
+    //lagre
+
     console.log("edit btn pressed");
   });
 
