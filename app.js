@@ -181,13 +181,17 @@ function buildTableHeaders(...headers) {
   return hdrRow;
 }
 
-function buildFacts() {
-
+function buildFacts(movieArr) {
+  const viewTime = document.createElement('h3');
+  const time = movieArr.reduce((t, m) => t + (m.length * m.timesWatched),0,);
+  console.log(time);
+  viewTime.textContent = `Minutter brukt: ${time}`;
+  factContainer.append(viewTime);
 }
 
 function renderPage() {
   clearPage()
-  buildFacts();
+  buildFacts(movieSort(searcFilter(movies)));
   buildMovieTable(movieSort(searcFilter(movies)));
 }
 

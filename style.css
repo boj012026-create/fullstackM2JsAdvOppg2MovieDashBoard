@@ -5,3 +5,7 @@ body {
 .edit {
 	background-color: plum;
 }
+
+.cell-input {
+	/*background: none;*/
+}
