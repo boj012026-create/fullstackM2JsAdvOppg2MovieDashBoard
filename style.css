@@ -3,9 +3,24 @@ body {
 }
 
 .edit {
-	background-color: plum;
+	.cell-input {
+		background-color: plum;
+	}
+}
+
+.item-btn {
+	border-radius: 1em;
+	border: none;
+	background-color: white;
+}
+
+.movie-row {
+	/*background-color: blue;*/
+	display: flex;
+	/*width: fit-content;*/
 }
 
 .cell-input {
-	/*background: none;*/
+	border: none;
+	/*width: 100%;*/
 }

@@ -88,6 +88,7 @@ function createRow(movieObj) {
   //console.log(title, genre, length, rating, timesWatched);
 
   row.id = movieObj.id;
+  row.classList.add('movie-row');
 
   row.append(createCell(title)); 
   row.append(createCell(genre)); 
@@ -103,6 +104,7 @@ function createRow(movieObj) {
 
 function createDeleteBtn(parentRow) {
   const delBtn = document.createElement('button');
+  delBtn.classList.add('item-btn');
   delBtn.textContent = "Slett";
 
   delBtn.addEventListener('click', () => {
@@ -119,6 +121,7 @@ function createDeleteBtn(parentRow) {
 function createEditBtn(parentRow) {
   const editBtn = document.createElement('button');
   editBtn.textContent = "Endre";
+  editBtn.classList.add('item-btn');
   
   editBtn.addEventListener('click', () => {
     const cellRow = parentRow.querySelectorAll('input');
