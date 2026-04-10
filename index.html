@@ -7,13 +7,14 @@
 	<title>FilmSamling</title>
 </head>
 <body>
-	<header>
+	<header class="fancy-tile">
 		<h1>Film Samling</h1>
 		<form id="movie-form">
-			<label for="movie-title">Tittel</label>
+			<label for="movie-title">Tittel
 			<input id="movie-title" name="movie-title" type="text">
+			</label>
 
-			<label for="movie-genre">Sjanger</label>
+			<label for="movie-genre">Sjanger
 			<select id="movie-genre" name="movie-genre">
 				<option value="All">Alle</option>
 				<option value="Action">Action</option>
@@ -26,19 +27,23 @@
 				<option value="Thriller">Thriller</option>
 				<option value="Western">Western</option>
 			</select>
+			</label>
 
-			<label for="movie-length">Lengde(minutt)</label>
+			<label for="movie-length">Lengde(minutt)
 			<input id="movie-length" name="movie-length" type="number">
+			</label>
 
-			<label for="movie-rating">Vurdering (1-10)</label>
-			<input id="movie-rating" name="movie-rating" type="number">
+			<label for="movie-rating">Vurdering (1-10)
+				<input id="movie-rating" name="movie-rating" type="number">
+			</label>
 
-			<label for="movie-watched">Antall ganger sett</label>
+			<label for="movie-watched">Antall ganger sett
 			<input id="movie-watched" name="movie-watched" type="number">
-			<button id="search-btn">Søk</button>
+			</label>
+			<button id="search-btn">Filtrer</button>
 			<button id="add-btn">Legg til</button>
 			<button id="delete-all-btn">Slett Alt</button>
-			<label for="sort-key">Sortering</label>
+			<label for="sort-key">Sortering
 			<select id="sort-key" name="sort-key">
 				<option value="title">Tittel</option>
 				<option value="genre">Sjanger</option>
@@ -46,14 +51,16 @@
 				<option value="rating">Vurdering</option>
 				<option value="timesWatched">Sett</option>
 			</select>
-				<label for="sort-reverse">Baklengs</label>
+			</label>
+				<label for="sort-reverse">Baklengs
 				<input type="checkbox" id="sort-reverse" name="sort-reverse">
+				</label>
 
 		</form>
 	</header>
 	<main id="main-container">
-		<article id="fact-container"></article>
-		<article id="movie-table"></article>
+		<article id="fact-container" class="fancy-tile"></article>
+		<article id="movie-table" class="fancy-tile"></article>
 	</main>
 </body>
 </html>
