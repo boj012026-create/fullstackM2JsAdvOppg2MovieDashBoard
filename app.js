@@ -68,7 +68,6 @@ addMovieBtn.addEventListener('click', (e) => {
     rating: formData.get("movie-rating"),
     timesWatched: formData.get("movie-watched")
   }
-  //console.log(newMovie);
   movies.unshift(newMovie);
   renderPage();
 });
@@ -85,7 +84,6 @@ function buildMovieTable(movieArr) {
 function createRow(movieObj) {
   const row = document.createElement('tr');
   const { title, genre, length, rating, timesWatched} = movieObj;
-  //console.log(title, genre, length, rating, timesWatched);
 
   row.id = movieObj.id;
   row.classList.add('movie-row');
@@ -111,7 +109,6 @@ function createDeleteBtn(parentRow) {
     const movieObj = movies.filter(m => m.id == parentRow.id)[0];
     const movieIndex = movies.indexOf(movieObj);
     movies.splice(movieIndex, 1);
-    //console.log(`movieIndex: ${movieIndex}`);
     saveLocal();
     renderPage();    
   });
@@ -187,7 +184,6 @@ function buildTableHeaders(...headers) {
 function buildFacts(movieArr) {
   const viewTime = document.createElement('h3');
   const time = movieArr.reduce((t, m) => t + (m.length * m.timesWatched),0,);
-  //console.log(time);
   viewTime.textContent = `Minutter brukt: ${time}`;
   factContainer.append(viewTime);
 }
@@ -219,10 +215,7 @@ function compare(a, b) {
   }
 }
 function searcFilter(movieArr) {
-  //console.log(movieFilter);
-  //return movieArr;
   return movieArr.filter(m => { 
-    //console.log(m);
     const title = m.title.toLowerCase().includes(movieFilter.title.toLowerCase());
     const genre = movieFilter.genre === "All" || m.genre === movieFilter.genre;
     const length = movieFilter.length <= m.length;
