@@ -3,6 +3,8 @@
 - legg til
 - slett
 - rediger
+- filter oppdateresmedfilterknapp
+- sortering oppdateres live
 
 ## Få inn igjen dummy data
 - slett alt
